@@ -3,7 +3,6 @@
 #include <time.h>
 #include <limits.h>
 
-// Process structure to store process information
 typedef struct {
     int pid;
     int arrival_time;
@@ -14,13 +13,11 @@ typedef struct {
     int turnaround_time;
 } Process;
 
-// Function to print process information
 void print_process(Process process) {
     printf("PID: %d\tArrival Time: %d\tBurst Time: %d\tStart Time: %d\tFinish Time: %d\tWaiting Time: %d\tTurnaround Time: %d\n",
            process.pid, process.arrival_time, process.burst_time, process.start_time, process.finish_time, process.waiting_time, process.turnaround_time);
 }
 
-// Function to sort processes by arrival time
 void sort_by_arrival(Process processes[], int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
@@ -33,7 +30,6 @@ void sort_by_arrival(Process processes[], int n) {
     }
 }
 
-// Function to calculate average waiting time
 float calculate_average_waiting_time(Process processes[], int n) {
     int total_waiting_time = 0;
     for (int i = 0; i < n; i++) {
@@ -42,7 +38,6 @@ float calculate_average_waiting_time(Process processes[], int n) {
     return (float)total_waiting_time / n;
 }
 
-// Function to calculate average turnaround time
 float calculate_average_turnaround_time(Process processes[], int n) {
     int total_turnaround_time = 0;
     for (int i = 0; i < n; i++) {
@@ -51,7 +46,6 @@ float calculate_average_turnaround_time(Process processes[], int n) {
     return (float)total_turnaround_time / n;
 }
 
-// Function to simulate SJF scheduling algorithm
 void sjf_scheduling(Process processes[], int n) {
     sort_by_arrival(processes, n);
 
@@ -83,7 +77,6 @@ void sjf_scheduling(Process processes[], int n) {
     }
 }
 
-// Function to generate random processes with arrival time and burst time
 void generate_processes(Process processes[], int n) {
     srand(time(NULL));
     for (int i = 0; i < n; i++) {
@@ -97,7 +90,6 @@ void generate_processes(Process processes[], int n) {
     }
 }
 
-// Test the SJF scheduling algorithm
 void test_sjf_scheduling(int num_processes) {
     Process processes[num_processes];
     generate_processes(processes, num_processes);
